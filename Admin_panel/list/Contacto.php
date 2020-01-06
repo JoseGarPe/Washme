@@ -28,7 +28,7 @@ require_once "../class/Empresa.php";
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>CleanSv::Empresas</title>
+    <title>Washme:: Clientes</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->   
@@ -175,53 +175,10 @@ require_once "../class/Empresa.php";
                                              <div class="col-lg-8 col-md-offset-3"> </div>
                                           <div class="col-md-4 col-md-offset-3">
                                             <?php 
-                                            echo '<input type="button" name="accion" value="Nuevo Contacto" id="accion" id_empresa="'.$id_empresa.'" class="btn btn-success save_data_user"/> </div>';
+                                          //  echo '<input type="button" name="accion" value="Nuevo Contacto" id="accion" id_empresa="'.$id_empresa.'" class="btn btn-success save_data_user"/> </div>';
                                              ?>
                                           </div></div>
-                                    <div class="form-group">
-                                        <label class="col-sm-12">Contactos</label>
-                                        <div class="col-sm-12">
-                                        
-                                            
-                                            <table id="example3" class="table table-striped table-bordered">
-                                               <thead>
-                              <th>N°</th>      
-                              <th>Nombre</th>
-                              <th>Telefono</th>
-                              <th>Correo</th>
-                              <th>Opciones</th>
-                                               </thead>
-                                               <tbody>
-                    <?php 
-                        require_once "../class/Contacto.php";
-                         $contac = new Contacto();
-                         $ListUsua = $contac->selectALL($id_empresa);
-                        
-                           # code...
-                         
-                         foreach ((array)$ListUsua as $w) {
-                         echo '
-                          <tr>
-                           <td>'.$w['id_contacto'].'</td>
-                           <td>'.$w['nombre'].' '.$w['apellido'].'</td>
-                           <td>'.$w['telefono'].'</td>
-                           <td>'.$w['correo'].'</td>
-                           <td>';
-                          
-                           echo'
-                                    
-                                    
-                                    <input type="button" name="edit" value="Editar" id="'.$w["id_contacto"].'" id_empresa="'.$id_empresa.'" class="btn btn-warning edit_data_contact" />
-                                     <input type="button" name="delete" value="Eliminar" id="'.$w["id_contacto"].'" id_empresa="'.$id_empresa.'"  class="btn btn-danger delete_data_contact" />
-                           </td>
-                          </tr>
-                         ';
-                       }
-                     ?>
-            </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                   
                                 </form>
                             </div>
                         </div>
@@ -238,7 +195,7 @@ require_once "../class/Empresa.php";
                                              <div class="col-lg-8 col-md-offset-3"> </div>
                                           <div class="col-md-4 col-md-offset-3">
                                             <?php 
-                                            echo '<input type="button" name="accion" value="Nuevo Registro" id="accion" id_empresa="'.$id_empresa.'" class="btn btn-success save_data"/> </div>';
+                                          //  echo '<input type="button" name="accion" value="Nuevo Registro" id="accion" id_empresa="'.$id_empresa.'" class="btn btn-success save_data"/> </div>';
                                              ?>
                                           </div></div>
                                 <div class="table-responsive">

@@ -80,7 +80,7 @@
                             <a href="#" class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i>Profile</a>
                         </li>
                         <li>
-                            <a href="Empresa.php" class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i>Contactos</a>
+                            <a href="Empresa.php" class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i>Clientes</a>
                         </li>
                         <li>
                             <a href="Servicio.php" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Servicios</a>
