@@ -41,27 +41,31 @@ CREATE TABLE `servicio` (
 ALTER TABLE `servicio`
   ADD CONSTRAINT `servicio_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`);
 
-DROP TABLE IF EXISTS `empresa`;
-CREATE TABLE `empresa` (
-  `id_empresa` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+DROP TABLE IF EXISTS `cliente`;
+CREATE TABLE `cliente` (
+  `id_cliente` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nombre` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `apellido` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `telefono` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `direccion` longtext COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `anios_cliente` int(11) NOT NULL,
+  `dui` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `correo` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `estado` varchar(15) COLLATE utf8_spanish2_ci DEFAULT NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
-  DROP TABLE IF EXISTS `contacto`;
+  DROP TABLE IF EXISTS `coches`;
 CREATE TABLE `contacto` (
-  `id_contacto` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `nombre` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `apellido` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `telefono` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `correo` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `id_empresa` int(11) DEFAULT NULL
+  `id_coches` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `marca` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `modelo` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `id_cliente` int(11) DEFAULT NULL
+  `id_categoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 ALTER TABLE `contacto`
-  ADD CONSTRAINT `servicio_ibfk_1` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`);
+  ADD CONSTRAINT `servicio_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)
+  ALTER TABLE `contacto`
+  ADD CONSTRAINT `servicio_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`);
 
 DROP TABLE IF EXISTS `historial_servicio`;
 CREATE TABLE `historial_servicio` (
