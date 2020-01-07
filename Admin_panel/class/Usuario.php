@@ -171,7 +171,7 @@ class Usuario extends Conexion
         return $ListTC;
     }
     public function login(){
-
+//SELECT u.*, tu.nombre as tipo FROM usuario u INNER JOIN tipo_usuario tu ON tu.id_tipo_usuario=u.id_tipo_usuario WHERE correo='josue.garpe96@gmail.com' AND pass='58e6c99ea950d207e1f3efbac9ff5b6be8b1e196f171badcd5b9441d946dad16' AND estado='Activo'
         $pass = hash("sha256", $this->pass);
         $query1="SELECT u.*, tu.nombre as tipo FROM usuario u INNER JOIN tipo_usuario tu ON tu.id_tipo_usuario=u.id_tipo_usuario WHERE correo='".$this->correo."' AND pass='".$pass."' AND estado='Activo'";
         $selectall1=$this->db->query($query1);

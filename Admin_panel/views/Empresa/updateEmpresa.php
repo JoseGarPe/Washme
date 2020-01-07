@@ -1,11 +1,11 @@
-<form role="form" action="../controllers/EmpresaController.php?accion=modificar" method="post">
+<form role="form" action="../controllers/ClienteController.php?accion=modificar" method="post">
               <div class="box-body">
 <?php 
-require_once "../../class/Empresa.php";
+require_once "../../class/Cliente.php";
        
               $codigo=$_POST["employee_id"];
-               $Empresa = new Empresa();
-                         $dato = $Empresa->selectOne($codigo);
+               $cliente = new Cliente();
+                         $dato = $cliente->selectOne($codigo);
                         
                       foreach ((array)$dato as $row) {
                         

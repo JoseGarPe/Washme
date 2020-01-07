@@ -140,23 +140,23 @@
                          foreach ((array)$ListUsua as $row) {
                          echo '
                           <tr>
-                           <td>'.$row['id_empresa'].'</td>
+                           <td>'.$row['id_cliente'].'</td>
                            <td>'.$row['nombre'].'</td>
                            <td>'.$row['direccion'].'</td>
                            <td>'.$row['estado'].'</td>
                            <td>';
                            if ($row['estado']=='Activo') {
                             echo '
-                                     <input type="button" name="delete" value="Desactivar" id="'.$row["id_empresa"].'" estado="Inactivo" class="btn btn-secundary status_data" />';
+                                     <input type="button" name="delete" value="Desactivar" id="'.$row["id_cliente"].'" estado="Inactivo" class="btn btn-secundary status_data" />';
                           }else{
                             echo '
-                                     <input type="button" name="delete" value="Activar" id="'.$row["id_empresa"].'" estado="Activo" class="btn btn-success status_data" />';
+                                     <input type="button" name="delete" value="Activar" id="'.$row["id_cliente"].'" estado="Activo" class="btn btn-success status_data" />';
                           }
                            echo'
                                     
                                     <a href="Contacto.php?id_empresa='.$row['id_empresa'].'" class="btn btn-info">Ver Mas detalles</a>
-                                    <input type="button" name="edit" value="Editar" id="'.$row["id_empresa"].'" class="btn btn-warning edit_data" />
-                                     <input type="button" name="delete" value="Eliminar" id="'.$row["id_empresa"].'" class="btn btn-danger delete_data" />
+                                    <input type="button" name="edit" value="Editar" id="'.$row["id_cliente"].'" class="btn btn-warning edit_data" />
+                                     <input type="button" name="delete" value="Eliminar" id="'.$row["id_cliente"].'" class="btn btn-danger delete_data" />
                            </td>
                           </tr>
                          ';

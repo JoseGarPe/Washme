@@ -88,7 +88,7 @@ elseif ($accion=='status') {
 			header('Location: ../list/Usuarios.php?success=correcto');
 	}
 
-}($accion=="modificar") {
+}elseif($accion=="modificar") {
  if (isset($_POST['nombre'])) {
  	$nombre=$_POST['nombre'];
  }else{
@@ -137,6 +137,23 @@ elseif ($accion=='status') {
 		# code...
 	}else{
 		header('Location: ../list/Usuarios.php?error=incorrecto');
+	}
+
+}
+elseif ($accion=='login') {
+	$correo=$_POST['login'];
+	$pass=$_POST['password'];
+ $usua = new Usuario();
+ $usua->setCorreo($correo);
+ $usua->setPass($pass);
+
+ $delete= $usua->login();
+ if ($delete==1) {
+		
+			header('Location: ../index.php?success=correcto');
+	}elseif ($delete==3) {
+	header('Location: ../inicio.php?success=incorrecto');
+		# code...
 	}
 
 }
