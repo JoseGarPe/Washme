@@ -1,4 +1,9 @@
+<?php 
+session_start();
+if (isset( $_SESSION['logged-in']) &&  $_SESSION['logged-in'] == true) {
 
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +28,12 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
 <![endif]-->
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -85,7 +95,11 @@
                     <ul class="navbar-nav my-lg-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="profile-pic m-r-5" />Markarn Doe</a>
+                       <a href="controllers/UsuarioController.php?accion=logout">
+          <span class="glyphicon glyphicon-log-out"></span>
+        </a>
                         </li>
+
                     </ul>
                 </div>
             </nav>
@@ -103,21 +117,40 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li>
-                            <a href="index.html" class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i>Inicio</a>
+                            <a href="../index.php" class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i>Inicio</a>
                         </li>
                         <li>
-                            <a href="pages-profile.html" class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i>Clientes</a>
+                            <a href="#" class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i>Profile</a>
                         </li>
                         <li>
-                            <a href="table-basic.html" class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i>Usuarios</a>
+                            <a href="list/Empresa.php" class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i>Clientes</a>
                         </li>
                         <li>
-                            <a href="icon-fontawesome.html" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Servicios</a>
+                            <a href="list/Servicio.php" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Servicios</a>
+                        </li>
+                         <li>
+                            <a href="list/Producto.php" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Productos</a>
                         </li>
                         <li>
-                            <a href="pages-blank.html" class="waves-effect"><i class="fa fa-columns m-r-10" aria-hidden="true"></i>Reportes</a>
+                            <a href="list/Usuarios.php" class="waves-effect"><i class="fa fa-globe m-r-10" aria-hidden="true"></i>Usuarios</a>
+                        </li>
+                       <!-- <li>
+                            <a href="pages-blank.html" class="waves-effect"><i class="fa fa-columns m-r-10" aria-hidden="true"></i>Blank Page</a>
+                        </li>
+                        <li>
+                            <a href="pages-error-404.html" class="waves-effect"><i class="fa fa-info-circle m-r-10" aria-hidden="true"></i>Error 404</a>
+                        </li>-->
+                        <li>
+                         <a href="controllers/UsuarioController.php?accion=logout">
+          <span class="glyphicon glyphicon-log-out"></span>
+        </a>
                         </li>
                     </ul>
+          
+
+                <!-- /menu footer buttons -->
+                
+                <!-- /menu footer buttons -->
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -250,3 +283,8 @@
 </body>
 
 </html>
+<?php 
+}
+else{
+    header('Location: inicio.php?success=incorrecto');
+} ?>

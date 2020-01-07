@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>Washme::Servicios</title>
+    <title>Washme::Productos</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->   
@@ -29,9 +29,9 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />  
     <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.0/css/rowGroup.dataTables.min.css" />  
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,7 +65,7 @@
                         </ol>
                     </div>
                     <div class="col-md-6 col-4 align-self-center">
-                         <input type="button" name="accion" value="Nuevo Servicio" id="accion" class="btn btn-success save_data"/> 
+                         <input type="button" name="accion" value="Nuevo Producto" id="accion" class="btn btn-success save_data"/> 
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -120,46 +120,46 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-block">
-                                <h4 class="card-title">Servicios</h4>
+                                <h4 class="card-title">Productos</h4>
                                 <h6 class="card-subtitle"></h6>
                                 <div class="table-responsive">
                                     <table id="example4" class="table table-striped table-bordered">
                                          <thead>
                       <th>N°</th>
                       <th>Nombre</th>
-                      <th>Categoria</th>
                       <th>Precio</th>
+                      <th>Stock</th>
                       <th>Estado</th>
                       <th>Opciones</th>
                   </thead>
                   <tbody>
                     <?php 
-                        require_once "../class/Servicio.php";
-                         $Servicios = new Servicio();
-                         $ListUsua = $Servicios->selectALL();
+                        require_once "../class/Producto.php";
+                         $Productos = new Producto();
+                         $ListUsua = $Productos->selectALL();
                         
                            # code...
                          
                          foreach ((array)$ListUsua as $row) {
                          echo '
                           <tr>
-                           <td>'.$row['id_servicio'].'</td>
+                           <td>'.$row['id_producto'].'</td>
                            <td>'.$row['nombre'].'</td>
-                           <td>'.$row["categoria"].'</td>
                            <td>'.$row["precio"].'</td>
+                           <td>'.$row["stock"].'</td>
                            <td>'.$row["estado"].'</td>
                            <td>';
                           if ($row['estado']=='Activo') {
                             echo '
-                                     <input type="button" name="delete" value="Desactivar" id="'.$row["id_servicio"].'" estado="Inactivo" class="btn btn-secundary status_data" />';
+                                     <input type="button" name="delete" value="Desactivar" id="'.$row["id_producto"].'" estado="Inactivo" class="btn btn-secundary status_data" />';
                           }else{
                             echo '
-                                     <input type="button" name="delete" value="Activar" id="'.$row["id_servicio"].'" estado="Activo" class="btn btn-success status_data" />';
+                                     <input type="button" name="delete" value="Activar" id="'.$row["id_producto"].'" estado="Activo" class="btn btn-success status_data" />';
                           }
                            echo'
-                                    <input type="button" name="view" value="Ver Detalle" id="'.$row["id_servicio"].'" class="btn btn-info view_data"/>  
-                                    <input type="button" name="edit" value="Editar" id="'.$row["id_servicio"].'" class="btn btn-warning edit_data" />
-                                     <input type="button" name="delete" value="Eliminar" id="'.$row["id_servicio"].'" class="btn btn-danger delete_data" />
+                                    <input type="button" name="view" value="Ver Detalle" id="'.$row["id_producto"].'" class="btn btn-info view_data"/>  
+                                    <input type="button" name="edit" value="Editar" id="'.$row["id_producto"].'" class="btn btn-warning edit_data" />
+                                     <input type="button" name="delete" value="Eliminar" id="'.$row["id_producto"].'" class="btn btn-danger delete_data" />
                            </td>
                           </tr>
                          ';
@@ -256,7 +256,7 @@
            if(employee_id != '')  
            {  
                 $.ajax({  
-                     url:"../views/Servicios/saveServicio.php",  
+                     url:"../views/Productos/saveProducto.php",  
                      method:"POST",  
                      data:{employee_id:employee_id},  
                      success:function(data){  
@@ -271,7 +271,7 @@
            if(employee_id != '')  
            {  
                 $.ajax({  
-                     url:"../views/Servicios/deleteServicio.php",  
+                     url:"../views/Productos/deleteProducto.php",  
                      method:"POST",  
                      data:{employee_id:employee_id},  
                      success:function(data){  
@@ -286,7 +286,7 @@
            if(employee_id != '')  
            {  
                 $.ajax({  
-                     url:"../views/Servicios/updateServicio.php",  
+                     url:"../views/Productos/updateProducto.php",  
                      method:"POST",  
                      data:{employee_id:employee_id},  
                      success:function(data){  
@@ -302,7 +302,7 @@
            if(employee_id != '')  
            {  
                 $.ajax({  
-                     url:"../views/Servicios/statuServicio.php",  
+                     url:"../views/Productos/statuProducto.php",  
                      method:"POST",  
                      data:{employee_id:employee_id,employee_status:employee_status},  
                      success:function(data){  

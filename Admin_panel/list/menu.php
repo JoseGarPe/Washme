@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if (isset( $_SESSION['logged-in']) &&  $_SESSION['logged-in'] == true) {
+
+
+ ?>
  <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -56,6 +62,9 @@
                     <ul class="navbar-nav my-lg-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="profile-pic m-r-5" />Markarn Doe</a>
+                         <a href="../controllers/UsuarioController.php?accion=logout">
+          <span class="glyphicon glyphicon-log-out"></span>
+        </a>
                         </li>
                     </ul>
                 </div>
@@ -84,6 +93,9 @@
                         </li>
                         <li>
                             <a href="Servicio.php" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Servicios</a>
+                        </li> 
+                         <li>
+                            <a href="Producto.php" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Productos</a>
                         </li>
                         <li>
                             <a href="Usuarios.php" class="waves-effect"><i class="fa fa-globe m-r-10" aria-hidden="true"></i>Usuarios</a>
@@ -96,7 +108,9 @@
                         </li>-->
                     </ul>
                     <div class="text-center m-t-30">
-                    <!--    <a href="https://wrappixel.com/templates/monsteradmin/" class="btn btn-danger"> Upgrade to Pro</a>-->
+                     <a href="controllers/UsuarioController.php?accion=logout">
+          <span class="glyphicon glyphicon-log-out"></span>
+        </a>
                     </div>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -106,3 +120,8 @@
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
+        <?php 
+}
+else{
+    header('Location: ../inicio.php?success=incorrecto');
+} ?>

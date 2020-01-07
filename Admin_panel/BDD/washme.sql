@@ -81,3 +81,13 @@ ALTER TABLE `historial_servicio`
   ADD CONSTRAINT `historial_servicio_ibfk_1` FOREIGN KEY (`id_coches`) REFERENCES `coches` (`id_coches`);
 ALTER TABLE `historial_servicio`
   ADD CONSTRAINT `historial_servicio_ibfk_2` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`);
+
+  DROP TABLE IF EXISTS `producto`;
+CREATE TABLE `producto` (
+  `id_producto` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `nombre` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `precio` decimal(11,2) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `descripcion` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `estado` varchar(15) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
