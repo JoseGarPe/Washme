@@ -62,8 +62,55 @@ elseif ($accion=="guardar")
 	$producto->setPrecio($precio);
 	$producto->setEstado($estado);
 	$save=$producto->save();
+	
 	if ($save==true) {
-		header('Location: ../list/Producto.php?success=correcto');
+$last_Pro=$producto->selectLast();
+	foreach ($variable as $key) {
+		$ficTec=$key['id_producto'];
+	}
+			  # definimos la carpeta destino
+    $carpeta = $_SERVER['DOCUMENT_ROOT'].'/Washme/Cliente_panel/Products/producto_'.$ficTec.'';
+        $directorio = $carpeta;
+    $carpetaDestino=$directorio;
+ 
+    # si hay algun archivo que subir
+    if(isset($_FILES["archivo"]) && $_FILES["archivo"]["name"][0])
+    {
+ 
+        # recorremos todos los arhivos que se han subido
+        for($i=0;$i<count($_FILES["archivo"]["name"]);$i++)
+        {
+ 
+            # si es un formato de imagen
+            if($_FILES["archivo"]["type"][$i]=="image/jpeg" || $_FILES["archivo"]["type"][$i]=="image/pjpeg" || $_FILES["archivo"]["type"][$i]=="image/gif" || $_FILES["archivo"]["type"][$i]=="image/png")
+            {
+ 
+                # si exsite la carpeta o se ha creado
+                if(file_exists($carpetaDestino) || @mkdir($carpetaDestino))
+                {
+                    $origen=$_FILES["archivo"]["tmp_name"][$i];
+                    $destino=$carpetaDestino.$_FILES["archivo"]["name"][$i];
+ 
+                    # movemos el archivo
+                  //  $destino=$carpetaDestino.basename($_FILES["archivo"]["name"][$i]);
+                    if(@move_uploaded_file($origen, $destino))
+                    {
+                        echo "<br>".$_FILES["archivo"]["name"][$i]." movido correctamente".$carpetaDestino;
+                    }else{
+                        echo "<br>No se ha podido mover el archivo: ".$_FILES["archivo"]["name"][$i];
+                    }
+                }else{
+                    echo "<br>No se ha podido crear la carpeta: ".$carpetaDestino;
+                }
+            }else{
+                echo "<br>".$_FILES["archivo"]["name"][$i]." - NO es imagen jpg, png o gif";
+            }
+        }
+    }else{
+        echo "<br>No se ha subido ninguna imagen";
+    }
+
+		header('Location: ../list/Producto.php?success=correcto&foto='.$foto_.'');
 		# code...
 	}
 	else{

@@ -46,6 +46,18 @@
                        </div>
                       
                     </div>
+
+                      <div class="form-group">
+                      <label for="exampleFormControlSelect3">Imagenes</label>
+                      <small>*Puede seleccionar varias a la vez</small>
+                       <div class="input-group-prepend bg-primary border-primary">
+                              <span class="input-group-text bg-transparent">
+                                <i class="mdi mdi mdi-folder-key text-white"></i>
+                              </span>
+                              <input name = "archivo[]" type = "file" multiple="multiple"> <br>
+                       </div>
+                      
+                    </div>
                           <input type="hidden" name="guardar" id="guardar" />  
                           <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />  
                      </form>

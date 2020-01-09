@@ -113,6 +113,13 @@ public function save()
        $ListTipoUsuario=$selectall->fetch_all(MYSQLI_ASSOC);
         return $ListTipoUsuario;
     }
+      public function selectLast()
+    {
+        $query="SELECT * FROM producto ORDER BY id_producto DESC LIMIT 1";
+        $selectall=$this->db->query($query);
+        $ListClientes=$selectall->fetch_all(MYSQLI_ASSOC);
+        return $ListClientes;
+    }
 
     
 
