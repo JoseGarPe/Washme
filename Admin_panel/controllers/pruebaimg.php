@@ -7,8 +7,8 @@
 <body>
     <?php
     # definimos la carpeta destino
-    $carpeta = $_SERVER['DOCUMENT_ROOT'].'/Washme/Cliente_panel/Products/producto1';
-        $directorio = $carpeta.'/producto1';
+    $carpeta = $_SERVER['DOCUMENT_ROOT'].'/Washme/Cliente_panel/Products/producto3/';
+        $directorio = $carpeta.'';
     $carpetaDestino=$directorio;
  
     # si hay algun archivo que subir
@@ -27,7 +27,7 @@
                 if(file_exists($carpetaDestino) || @mkdir($carpetaDestino))
                 {
                     $origen=$_FILES["archivo"]["tmp_name"][$i];
-                    $destino=$carpetaDestino.$_FILES["archivo"]["name"][$i];
+                   // $destino=$carpetaDestino.$_FILES["archivo"]["name"][$i];
  
                     # movemos el archivo
                     $destino=$directorio.basename($_FILES["archivo"]["name"][$i]);

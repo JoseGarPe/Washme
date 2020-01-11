@@ -167,6 +167,17 @@
                      ?>
             </tbody>
         </table>
+        <?php 
+
+                  $FOTO = 1;
+                foreach(glob('../Products/producto_29/*') as $image) {
+                echo '
+                   Imagen '.$FOTO.' Equipo<br> <img src="'.$image.'" width="50%" height="50%">
+               
+                ';
+                $FOTO = $FOTO + 1;
+                }
+         ?>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +210,7 @@
 
 
      <div id="dataModal3" class="modal fade">  
-                                  <div class="modal-dialog">  
+                                  <div class="modal-dialog modal-lg">  
                                        <div class="modal-content">  
                                             <div class="modal-header">  
                                             </div>  

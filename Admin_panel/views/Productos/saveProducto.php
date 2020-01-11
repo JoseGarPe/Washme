@@ -1,4 +1,4 @@
-<form method="post" id="insert_form" action="../controllers/ProductoController.php?accion=guardar">  
+<form method="post" id="insert_form" action="../controllers/ProductoController.php?accion=guardar" enctype="multipart/form-data">  
                         
                         <div class="form-group">
                           <label>Nombre Servicio</label>  
@@ -54,9 +54,11 @@
                               <span class="input-group-text bg-transparent">
                                 <i class="mdi mdi mdi-folder-key text-white"></i>
                               </span>
-                              <input name = "archivo[]" type = "file" multiple="multiple"> <br>
                        </div>
-                      
+                             <!-- <input name ="archivo[]" type ="file" multiple="multiple"> <br>-->
+                      <input name ="foto_1" type ="file"><br>
+                      <input name ="foto_2" type ="file"><br>
+                      <input name ="foto_3" type ="file">
                     </div>
                           <input type="hidden" name="guardar" id="guardar" />  
                           <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />  

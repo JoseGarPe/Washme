@@ -49,7 +49,7 @@ require_once "../../class/Producto.php";
                           </div>
                         </div>
                    <div class="form-group">
-                      <label for="exampleFormControlSelect3">Nivel Acceso</label>
+                      <label for="exampleFormControlSelect3">Stock</label>
                        <div class="input-group-prepend bg-primary border-primary">
                               <span class="input-group-text bg-transparent">
                                 <i class="mdi mdi mdi-folder-key text-white"></i>
@@ -59,7 +59,8 @@ require_once "../../class/Producto.php";
                               
                    echo'   
                        </div>
-                    ';
+
+                       ';
 
                          }
 
