@@ -4,9 +4,13 @@ class Cliente extends conexion
 {
 private $id_cliente;
 private $nombre;
+private $apellido;
+private $telefono;
 private $direccion;
-private $anios_cliente;
+private $dui;
+private $correo;
 private $estado;
+private $pass;
 
 public function __construct()
 {
@@ -14,9 +18,14 @@ public function __construct()
 
         $this->id_cliente= "";
         $this->nombre = "";
+        $this->apellido = "";
+        $this->telefono = "";
         $this->direccion = "";
-        $this->anios_cliente = "";
+        $this->dui = "";
+        $this->correo = "";
         $this->estado = "";
+        $this->pass = "";
+
 
 }
 
@@ -36,6 +45,28 @@ public function __construct()
         $this->nombre = $nombre;
     }
 
+    public function getApellido() {
+        return $this->apellido;
+    }
+
+    public function setApellido($apellido) {
+        $this->apellido = $apellido;
+    }
+    public function getTelefono() {
+        return $this->telefono;
+    }
+
+    public function setTelefono($telefono) {
+        $this->telefono = $telefono;
+    }
+
+    public function getDui() {
+        return $this->dui;
+    }
+
+    public function setDui($dui) {
+        $this->dui = $dui;
+    }
     public function getDireccion() {
         return $this->direccion;
     }
@@ -43,12 +74,12 @@ public function __construct()
     public function setDireccion($direccion) {
         $this->direccion = $direccion;
     }  
-      public function getAnios_cliente() {
-        return $this->anios_cliente;
+      public function getCorreo() {
+        return $this->correo;
     }
 
-    public function setAnios_cliente($anios_cliente) {
-        $this->anios_cliente = $anios_cliente;
+    public function setCorreo($correo) {
+        $this->correo = $correo;
     }  
       public function getEstado() {
         return $this->estado;
@@ -58,9 +89,18 @@ public function __construct()
         $this->estado = $estado;
     } 
 
+    public function getPass() {
+        return $this->correo;
+    }
+
+    public function setPass($pass) {
+        $this->pass = $pass;
+    }
+
 public function save()
     {
-    	$query="INSERT INTO `cliente`(`id_cliente`, `nombre`, `direccion`,`anios_cliente`,`estado`) VALUES(NULL,'".$this->nombre."','".$this->direccion."','".$this->anios_cliente."','".$this->estado."');";
+        $password = hash('sha256', $this->pass);
+    	$query="INSERT INTO `cliente`(`id_cliente`, `nombre`, `apellido`, `telefono`, `direccion`, `dui`,`correo`,`estado`,`pass`) VALUES(NULL,'".$this->nombre."','".$this->apellido."','".$this->telefono."','".$this->direccion."','".$this->dui."','".$this->correo."','".$this->estado."','".$password."');";
     	$save=$this->db->query($query);
     	if ($save==true) {
             return true;
@@ -71,7 +111,7 @@ public function save()
 
      public function update()
     {
-        $query="UPDATE cliente SET nombre='".$this->nombre."', direccion='".$this->direccion."',anios_cliente='".$this->anios_cliente."',estado='".$this->estado."' WHERE id_cliente='".$this->id_cliente."'";
+        $query="UPDATE cliente SET nombre='".$this->nombre."', apellido='".$this->apellido."',telefono='".$this->telefono."', direccion='".$this->direccion."', dui='".$this->dui."',correo='".$this->correo."',estado='".$this->estado."' WHERE id_cliente='".$this->id_cliente."'";
         $update=$this->db->query($query);
         if ($update==true) {
             return true;
@@ -115,6 +155,37 @@ public function save()
         }else {
             return false;
         }  
+    }
+
+    public function login(){
+//SELECT u.*, tu.nombre as tipo FROM usuario u INNER JOIN tipo_usuario tu ON tu.id_tipo_usuario=u.id_tipo_usuario WHERE correo='josue.garpe96@gmail.com' AND pass='58e6c99ea950d207e1f3efbac9ff5b6be8b1e196f171badcd5b9441d946dad16' AND estado='Activo'
+        $pass = hash("sha256", $this->pass);
+        $query1="SELECT * FROM cliente  WHERE correo='".$this->correo."' AND pass='".$pass."' AND estado='Activo'";
+        $selectall1=$this->db->query($query1);
+        $ListUsuario=$selectall1->fetch_all(MYSQLI_ASSOC);
+
+        if ($selectall1->num_rows!=0) {
+            foreach ($ListUsuario as $key) {
+                         session_start();
+                
+                $_SESSION['logged-in'] = true;
+                $_SESSION['Cliente']= $this->correo;
+                $_SESSION['id_cliente']=$key['id_cliente'];
+                $_SESSION['correo']=$key['correo'];
+                 $_SESSION['tiempo']=time();
+                return 1;
+           
+        }
+            
+        }
+
+            else{
+                session_start();
+                $_SESSION['logged-in'] = false;
+                 $_SESSION['tiempo']=0;
+                return 3;
+            }
+
     }
 
 

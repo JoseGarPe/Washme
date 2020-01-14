@@ -169,14 +169,14 @@
         </table>
         <?php 
 
-                  $FOTO = 1;
+   /*               $FOTO = 1;
                 foreach(glob('../Products/producto_29/*') as $image) {
                 echo '
                    Imagen '.$FOTO.' Equipo<br> <img src="'.$image.'" width="50%" height="50%">
                
                 ';
                 $FOTO = $FOTO + 1;
-                }
+                }*/
          ?>
                                 </div>
                             </div>

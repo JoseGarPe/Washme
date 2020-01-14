@@ -18,6 +18,7 @@ if ($accion=="modificar") {
 	$descripcion=$_POST['descripcion'];
 	$precio=$_POST['precio'];
 	$stock=$_POST['stock'];
+	$id_categoria_producto=$_POST['id_categoria_producto'];
 
 	$producto = new Producto();
 	$producto->setNombre($nombre);
@@ -26,6 +27,7 @@ if ($accion=="modificar") {
 	$producto->setId_producto($id_producto);
 	$producto->setPrecio($precio);
 	$producto->setEstado($estado);
+	$producto->setId_categoria_producto($id_categoria_producto);
 	$update=$producto->update();
 	if ($update==true) {
 		header('Location: ../list/Producto.php?success=correcto');
@@ -55,7 +57,9 @@ elseif ($accion=="guardar")
 	$nombre=$_POST['nombre'];
 	$descripcion=$_POST['descripcion'];
 	$precio=$_POST['precio'];
-	$stock+=$_POST['stock'];
+	$stock=$_POST['stock'];
+	$id_categoria_producto=$_POST['id_categoria_producto'];
+
 	$estado='Activo';
 	$producto = new Producto();
 
@@ -283,6 +287,7 @@ if (isset($_FILES['foto_'.$i.''])){
 	$producto->setStock($stock);
 	$producto->setPrecio($precio);
 	$producto->setEstado($estado);
+	$producto->setId_categoria_producto($id_categoria_producto);
 	$save=$producto->save();
 
 

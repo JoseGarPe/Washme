@@ -8,6 +8,7 @@ private $descripcion;
 private $precio;
 private $stock;
 private $estado;
+private $id_categoria_producto;
 
 public function __construct()
 {
@@ -19,6 +20,7 @@ public function __construct()
         $this->precio = "";
         $this->stock = "";
         $this->estado = "";
+        $this->id_categoria_producto = "";
 
 }
 
@@ -66,10 +68,17 @@ public function __construct()
     public function setEstado($estado) {
         $this->estado = $estado;
     } 
+        public function getId_categoria_producto() {
+        return $this->id_categoria_producto;
+    }
+
+    public function setId_categoria_producto($id) {
+        $this->id_categoria_producto = $id;
+    }
 
 public function save()
     {
-    	$query="INSERT INTO `producto`(`id_producto`, `nombre`, `descripcion`,`precio`,`stock`,`estado`) VALUES(NULL,'".$this->nombre."','".$this->descripcion."','".$this->precio."','".$this->stock."','".$this->estado."');";
+    	$query="INSERT INTO `producto`(`id_producto`, `nombre`, `descripcion`,`precio`,`stock`,`estado`,`id_categoria_producto`) VALUES(NULL,'".$this->nombre."','".$this->descripcion."','".$this->precio."','".$this->stock."','".$this->estado."','".$this->id_categoria_producto."');";
     	$save=$this->db->query($query);
     	if ($save==true) {
             return true;
@@ -80,7 +89,7 @@ public function save()
 
      public function update()
     {
-        $query="UPDATE producto SET nombre='".$this->nombre."', descripcion='".$this->descripcion."',precio='".$this->precio."',stock='".$this->stock."' WHERE id_producto='".$this->id_producto."'";
+        $query="UPDATE producto SET nombre='".$this->nombre."', descripcion='".$this->descripcion."',precio='".$this->precio."',stock='".$this->stock."', id_categoria_producto='".$this->id_categoria_producto."' WHERE id_producto='".$this->id_producto."'";
         $update=$this->db->query($query);
         if ($update==true) {
             return true;

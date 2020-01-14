@@ -82,6 +82,13 @@ ALTER TABLE `historial_servicio`
 ALTER TABLE `historial_servicio`
   ADD CONSTRAINT `historial_servicio_ibfk_2` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`);
 
+DROP TABLE IF EXISTS `categoria_producto`;
+CREATE TABLE `categoria_producto` (
+  `id_categoria_producto` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `nombre` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `descripcion` longtext COLLATE utf8_spanish2_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
   DROP TABLE IF EXISTS `producto`;
 CREATE TABLE `producto` (
   `id_producto` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -89,5 +96,9 @@ CREATE TABLE `producto` (
   `precio` decimal(11,2) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `descripcion` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `estado` varchar(15) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `stock` int(11) DEFAULT NULL
+  `stock` int(11) DEFAULT NULL,
+  `id_categoria_producto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+ALTER TABLE `categoria_producto`
+  ADD CONSTRAINT `categoria_producto_ibfk_1` FOREIGN KEY (`id_categoria_producto`) REFERENCES `categoria_producto` (`id_categoria_producto`);

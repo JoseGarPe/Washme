@@ -3,7 +3,7 @@
 private $id_cliente;
 private $nombre;
 private $direccion;
-private $anio_cliente;
+private $pass;
 private $id_categoria;
 private $estado;
 */
@@ -13,16 +13,45 @@ require_once "../class/Cliente.php";
 $accion=$_GET['accion'];
 
 if ($accion=="modificar") {
-	$id_cliente =$_POST['id'];
-	$nombre=$_POST['nombre'];
-	$direccion=$_POST['direccion'];
-	$anio_cliente=1;
+
+	 if (isset($_POST['nombre'])) {
+ 	$nombre=$_POST['nombre'];
+ }else{
+ 	$nombre=NULL;
+ }
+ if (isset($_POST['apellido'])) {
+ 	$apellido=$_POST['apellido'];
+ }else{
+ 	$apellido=NULL;
+ }
+ if (isset($_POST['correo'])) {
+ 	$correo=$_POST['correo'];
+ }else{
+ 	$correo=NULL;
+ }
+  if (isset($_POST['pass'])) {
+ 	$pass=$_POST['pass'];
+ }else{
+ 	$pass=NULL;
+ }
+
+  if (isset($_POST['dui'])) {
+ 	$dui=$_POST['dui'];
+ }else{
+ 	$dui=NULL;
+ }
+
+  if (isset($_POST['telefono'])) {
+ 	$telefono=$_POST['telefono'];
+ }else{
+ 	$telefono=NULL;
+ }
 
 	$empresa = new Cliente();
 	$empresa->setNombre($nombre);
 	$empresa->setDireccion($direccion);
 	$empresa->setId_cliente($id_cliente);
-	$empresa->setanio_cliente($anio_cliente);
+	$empresa->setpass($pass);
 	$update=$empresa->update();
 	if ($update==true) {
 		header('Location: ../list/Empresa.php?success=correcto');
@@ -46,19 +75,52 @@ elseif ($accion=="eliminar") {
 }
 elseif ($accion=="guardar") 
 {
-	$id_cliente =$_POST['id'];
-	$nombre=$_POST['nombre'];
-	$direccion=$_POST['direccion'];
-	$anio_cliente=1;
+	 if (isset($_POST['nombre'])) {
+ 	$nombre=$_POST['nombre'];
+ }else{
+ 	$nombre=NULL;
+ }
+ if (isset($_POST['apellido'])) {
+ 	$apellido=$_POST['apellido'];
+ }else{
+ 	$apellido=NULL;
+ }
+ if (isset($_POST['correo'])) {
+ 	$correo=$_POST['correo'];
+ }else{
+ 	$correo=NULL;
+ }
+  if (isset($_POST['pass'])) {
+ 	$pass=$_POST['pass'];
+ }else{
+ 	$pass=NULL;
+ }
+
+  if (isset($_POST['dui'])) {
+ 	$dui=$_POST['dui'];
+ }else{
+ 	$dui=NULL;
+ }
+ $estado='Activo';
+
+  if (isset($_POST['telefono'])) {
+ 	$telefono=$_POST['telefono'];
+ }else{
+ 	$telefono=NULL;
+ }
 	$estado='Activo';
 	$empresa = new Cliente();
 	$empresa->setNombre($nombre);
+	$empresa->setApellido($apellido);
 	$empresa->setDireccion($direccion);
-	$empresa->setAnios_cliente($anio_cliente);
+	$empresa->setTelefono($telefono);
+	$empresa->setDui($dui);
+	$empresa->setCorreo($correo);
+	$empresa->setPass($pass);
 	$empresa->setEstado($estado);
 	$save=$empresa->save();
 	if ($save==true) {
-		header('Location: ../list/Empresa.php?success=correcto');
+		header('Location: ../login/login.php?success=correcto');
 		# code...
 	}
 	else{

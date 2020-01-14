@@ -59,6 +59,29 @@ require_once "../../class/Producto.php";
                               
                    echo'   
                        </div>
+                       <div class="form-group">
+                      <label for="exampleFormControlSelect3">Nivel Acceso</label>
+                       <div class="input-group-prepend bg-primary border-primary">
+                              <span class="input-group-text bg-transparent">
+                                <i class="mdi mdi mdi-folder-key text-white"></i>
+                              </span>
+                              <select class="form-control" id="exampleFormControlSelect3" name="id_categoria" aria-describedby="colored-addon2">
+                                <option value="0">SELECCIONE UNA OPCION</option>';
+                              
+                                 require_once "../../class/Categoria_Producto.php";
+                         $NivelA = new Categoria_Producto();
+                         $ListUsua = $NivelA->selectALL();
+                         foreach ((array)$ListUsua as $r) {
+                          if ($row['id_categoria']==$r['id_categoria']) {
+                            
+                          echo '<option value="'.$r['id_categoria_producto'].'" selected>'.$r['nombre'].'</option>';
+                          }else{
+                          echo '<option value="'.$r['id_categoria_producto'].'">'.$r['nombre'].'</option>';
+                        }
+                         }
+                                
+                   echo'   </select>
+                       </div>
 
                        ';
 

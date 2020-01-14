@@ -47,6 +47,27 @@
                       
                     </div>
 
+                      
+                      <div class="form-group">
+                      <label for="exampleFormControlSelect3">Tipo de Producto</label>
+                       <div class="input-group-prepend bg-primary border-primary">
+                              <span class="input-group-text bg-transparent">
+                                <i class="mdi mdi mdi-folder-key text-white"></i>
+                              </span>
+                              <select class="form-control" id="exampleFormControlSelect3" name="id_categoria_producto" aria-describedby="colored-addon2">
+                                <option value="0">SELECCIONE UNA OPCION</option>
+                                <?php 
+                                 require_once "../../class/Categoria_Producto.php";
+                         $NivelA = new Categoria_Producto();
+                         $ListUsua = $NivelA->selectALL();
+                         foreach ((array)$ListUsua as $row) {
+                          echo '<option value="'.$row['id_categoria_producto'].'">'.$row['nombre'].'</option>';
+                         }
+                                 ?>
+                      </select>
+                       </div>
+                      
+                    </div>
                       <div class="form-group">
                       <label for="exampleFormControlSelect3">Imagenes</label>
                       <small>*Puede seleccionar varias a la vez</small>
