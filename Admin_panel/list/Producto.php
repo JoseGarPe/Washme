@@ -66,6 +66,7 @@
                     </div>
                     <div class="col-md-6 col-4 align-self-center">
                          <input type="button" name="accion" value="Nuevo Producto" id="accion" class="btn btn-success save_data"/> 
+                         <a href="Categoria_Producto.php" class="btn btn-warning"> Administrar Categorias de Prodcuto</a>
                     </div>
                 </div>
                 <!-- ============================================================== -->

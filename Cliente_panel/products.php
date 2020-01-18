@@ -73,7 +73,7 @@
 			<div class="wrap_header">
 				<!-- Logo -->
 				<a href="index.html" class="logo">
-					<img src="images/icons/logo.png" alt="IMG-LOGO">
+					<img src="images/icons/logo2.png" alt="IMG-LOGO">
 				</a>
 
 				<!-- Menu -->
@@ -94,7 +94,7 @@
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.html">Sale</a>
+								<a href="products.php">Sale</a>
 							</li>
 
 							<li>

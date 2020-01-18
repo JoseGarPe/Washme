@@ -113,6 +113,14 @@ public function save()
        $ListTipoUsuario=$selectall->fetch_all(MYSQLI_ASSOC);
         return $ListTipoUsuario;
     }
+    public function selectLast_3()
+    {
+        $query="SELECT * FROM servicio ORDER BY id_servicio DESC LIMIT 3";
+        $selectall=$this->db->query($query);
+        $ListClientes=$selectall->fetch_all(MYSQLI_ASSOC);
+        return $ListClientes;
+    }
+    
 
     
 

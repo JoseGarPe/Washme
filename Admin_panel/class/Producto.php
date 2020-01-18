@@ -129,6 +129,15 @@ public function save()
         $ListClientes=$selectall->fetch_all(MYSQLI_ASSOC);
         return $ListClientes;
     }
+    
+public function selectLast_8($categoria_producto)
+    {
+        $query="SELECT * FROM producto WHERE id_categoria_producto='".$categoria_producto."' ORDER BY id_producto DESC LIMIT 8";
+        $selectall=$this->db->query($query);
+        $ListClientes=$selectall->fetch_all(MYSQLI_ASSOC);
+        return $ListClientes;
+    }
+    
 
     
 
