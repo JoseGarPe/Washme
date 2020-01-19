@@ -75,21 +75,22 @@ elseif ($accion=="guardar")
   for ($i=1; $i <= 3 ; $i++) { 
   
 
-
+// reduccin de imagen en tamaño mas no en calidad
 if (isset($_FILES['foto_'.$i.''])){
-
+	//tamaños de referencia para evaluar las imagenes
 	$max_ancho = 1280;
 	$max_alto = 900;
 
 	if($_FILES['foto_'.$i.'']['type']=='image/png' || $_FILES['foto_'.$i.'']['type']=='image/jpeg' || $_FILES['foto_'.$i.'']['type']=='image/gif'){
 		$medidasimagen= getimagesize($_FILES['foto_'.$i.'']['tmp_name']);
- 		$carpeta = $_SERVER['DOCUMENT_ROOT'].'/Washme/Cliente_panel/Products/producto_'.$ficTec.'/';
- 		$carpeta2 = $_SERVER['DOCUMENT_ROOT'].'/Washme/Admin_panel/Products/producto_'.$ficTec.'/';
+ 		$carpeta = $_SERVER['DOCUMENT_ROOT'].'/Washme/Cliente_panel/Products/producto_'.$ficTec.'/'; //Aqui se guardan las imagenes para mostrarse en el sitio 
+ 		$carpeta2 = $_SERVER['DOCUMENT_ROOT'].'/Washme/Admin_panel/Products/producto_'.$ficTec.'/'; // Aqui se guardan las imagenes para administracion
 		$directorio = $carpeta;
 		$directorio2 = $carpeta2;
 		if($medidasimagen[0] < 1280 && $_FILES['foto_'.$i.'']['size'] < 100){
+			//Si la imagen peza menos de 100 Kb se guarda directamente y no se reduce
 			if (!file_exists($carpeta)) {
-			    mkdir($carpeta, 0777, true);
+			    mkdir($carpeta, 0777, true); // SI la carpeta no existe la crea; se crea una carpeta por cada producto con su respectivo ID
 				$fichero=$directorio.basename($_FILES['foto_'.$i.'']['name']);
 				if (move_uploaded_file($_FILES['foto_'.$i.'']['tmp_name'], $fichero)){
 					$nombre_fo=$_FILES['foto_'.$i.'']['name'];
@@ -121,7 +122,7 @@ if (isset($_FILES['foto_'.$i.''])){
 	
 		}
 		else{
-
+// dependiendo del tipo se crea la nueva imagen desde aqui
 
 			$nombrearchivo=$_FILES['foto_'.$i.'']['name'];
 
@@ -164,7 +165,7 @@ if (isset($_FILES['foto_'.$i.''])){
 			//imagedestroy($original);
 			 
 			$cal=8;
-
+//Aqui se guarda la nueva imagen en las carpetas respectivas
 			if($_FILES['foto_'.$i.'']['type']=='image/jpeg'){
 			if (!file_exists($carpeta)) {
 			    mkdir($carpeta, 0777, true);

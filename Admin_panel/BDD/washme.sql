@@ -102,3 +102,23 @@ CREATE TABLE `producto` (
 
 ALTER TABLE `categoria_producto`
   ADD CONSTRAINT `categoria_producto_ibfk_1` FOREIGN KEY (`id_categoria_producto`) REFERENCES `categoria_producto` (`id_categoria_producto`);
+
+DROP TABLE IF EXISTS `paquete`;
+CREATE TABLE `paquete` (
+  `id_paquete` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `nombre` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `precio` decimal(11,2) COLLATE utf8_spanish2_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+DROP TABLE IF EXISTS `paquete_servicio`;
+CREATE TABLE `paquete_servicio` (
+  `id_paquete_servicio` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+  `id_paquete` int(11) NOT NULL,
+  `id_servicio` int(11) NOT NULL,
+  `estado` varchar(25) COLLATE utf8_spanish2_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+ALTER TABLE `paquete_servicio`
+  ADD CONSTRAINT `paquete_servicio_ibfk_1` FOREIGN KEY (`id_paquete`) REFERENCES `paquete` (`id_paquete`);
+ALTER TABLE `paquete_servicio`
+  ADD CONSTRAINT `paquete_servicio_ibfk_2` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`);

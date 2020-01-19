@@ -92,10 +92,13 @@ if (isset( $_SESSION['logged-in']) &&  $_SESSION['logged-in'] == true) {
                             <a href="Empresa.php" class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i>Clientes</a>
                         </li>
                         <li>
-                            <a href="Servicio.php" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Servicios</a>
+                            <a href="Paquete.php" class="waves-effect"><i class="fa fa-archive m-r-10" aria-hidden="true"></i>Paquetes</a>
+                        </li>
+                        <li>
+                            <a href="Servicio.php" class="waves-effect"><i class="fa fa-star-o m-r-10" aria-hidden="true"></i>Servicios</a>
                         </li> 
                          <li>
-                            <a href="Producto.php" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Productos</a>
+                            <a href="Producto.php" class="waves-effect"><i class="fa fa-magic m-r-10" aria-hidden="true"></i>Productos</a>
                         </li>
                         <li>
                             <a href="Usuarios.php" class="waves-effect"><i class="fa fa-globe m-r-10" aria-hidden="true"></i>Usuarios</a>

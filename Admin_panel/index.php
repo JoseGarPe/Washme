@@ -126,10 +126,13 @@ if (isset( $_SESSION['logged-in']) &&  $_SESSION['logged-in'] == true) {
                             <a href="list/Empresa.php" class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i>Clientes</a>
                         </li>
                         <li>
-                            <a href="list/Servicio.php" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Servicios</a>
+                            <a href="list/Paquete.php" class="waves-effect"><i class="fa fa-archive m-r-10" aria-hidden="true"></i>Paquetes</a>
                         </li>
+                        <li>
+                            <a href="list/Servicio.php" class="waves-effect"><i class="fa fa-star-o m-r-10" aria-hidden="true"></i>Servicios</a>
+                        </li> 
                          <li>
-                            <a href="list/Producto.php" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Productos</a>
+                            <a href="list/Producto.php" class="waves-effect"><i class="fa fa-magic m-r-10" aria-hidden="true"></i>Productos</a>
                         </li>
                         <li>
                             <a href="list/Usuarios.php" class="waves-effect"><i class="fa fa-globe m-r-10" aria-hidden="true"></i>Usuarios</a>
@@ -140,7 +143,6 @@ if (isset( $_SESSION['logged-in']) &&  $_SESSION['logged-in'] == true) {
                         <li>
                             <a href="pages-error-404.html" class="waves-effect"><i class="fa fa-info-circle m-r-10" aria-hidden="true"></i>Error 404</a>
                         </li>-->
-                        <li>
                          <a href="controllers/UsuarioController.php?accion=logout">
           <span class="glyphicon glyphicon-log-out"></span>
         </a>

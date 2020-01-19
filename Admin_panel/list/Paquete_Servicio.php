@@ -1,3 +1,6 @@
+<?php 
+$pqt= $_GET['paquete'];
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +13,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>Washme::Servicios</title>
+    <title>Washme::Paquete_Servicio</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->   
@@ -29,13 +32,11 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />  
     <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.0/css/rowGroup.dataTables.min.css" />  
+    
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
+    <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -65,8 +66,10 @@
                         </ol>
                     </div>
                     <div class="col-md-6 col-4 align-self-center">
-                         <input type="button" name="accion" value="Nuevo Servicio" id="accion" class="btn btn-success save_data"/> 
-                         <a href="Categoria.php" class="btn btn-warning"> Administrar Categorias</a>
+                      <?php 
+                      echo '<input type="button" name="accion" value="Agregar Servicios" id="'.$pqt.'" class="btn btn-success save_data"/> ';
+                       ?>
+                         
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -119,48 +122,56 @@
              ?>
                     <!-- column -->
                     <div class="col-sm-12">
+                      <table class="table table-striped table-bordered">
+                        <thead>
+                          <th>ID</th>
+                          <th>Paquete</th>
+                          <th>Precio</th>
+                        </thead>
+                        <tbody>
+                          <?php 
+                           require_once "../class/Paquete.php";
+                         $Paquetes = new Paquete();
+                         $DtsPaquete = $Paquetes->selectOne($pqt);
+                          foreach ($DtsPaquete as $value) {
+                            echo '<tr>
+                            <td>'.$value['id_paquete'].'</td>
+                            <td>'.$value['nombre'].'</td>
+                            <td>'.$value['precio'].'</td>
+
+                            </tr>'  ;
+                          }
+                           ?>
+                          
+                        </tbody>
+                      </table>
                         <div class="card">
                             <div class="card-block">
-                                <h4 class="card-title">Servicios</h4>
+                                <h4 class="card-title">Servicios del Paquete</h4>
                                 <h6 class="card-subtitle"></h6>
                                 <div class="table-responsive">
                                     <table id="example4" class="table table-striped table-bordered">
                                          <thead>
-                      <th>N°</th>
-                      <th>Nombre</th>
-                      <th>Categoria</th>
-                      <th>Precio</th>
-                      <th>Estado</th>
+                      <th>N°</th>                      <th>Nombre de Servicio</th>
                       <th>Opciones</th>
                   </thead>
                   <tbody>
                     <?php 
-                        require_once "../class/Servicio.php";
-                         $Servicios = new Servicio();
-                         $ListUsua = $Servicios->selectALL();
+                        require_once "../class/Paquete_Servicio.php";
+                         $Paquete_Servicios = new Paquete_Servicio();
+                         $ListUsua = $Paquete_Servicios->selectALL($pqt);
                         
                            # code...
                          
                          foreach ((array)$ListUsua as $row) {
                          echo '
                           <tr>
-                           <td>'.$row['id_servicio'].'</td>
-                           <td>'.$row['nombre'].'</td>
-                           <td>'.$row["categoria"].'</td>
-                           <td>'.$row["precio"].'</td>
-                           <td>'.$row["estado"].'</td>
+                           <td>'.$row['id_paquete_servicio'].'</td>
+                           <td>'.$row['servicio'].'</td>
                            <td>';
-                          if ($row['estado']=='Activo') {
-                            echo '
-                                     <input type="button" name="delete" value="Desactivar" id="'.$row["id_servicio"].'" estado="Inactivo" class="btn btn-secundary status_data" />';
-                          }else{
-                            echo '
-                                     <input type="button" name="delete" value="Activar" id="'.$row["id_servicio"].'" estado="Activo" class="btn btn-success status_data" />';
-                          }
-                           echo'
-                                    <input type="button" name="view" value="Ver Detalle" id="'.$row["id_servicio"].'" class="btn btn-info view_data"/>  
-                                    <input type="button" name="edit" value="Editar" id="'.$row["id_servicio"].'" class="btn btn-warning edit_data" />
-                                     <input type="button" name="delete" value="Eliminar" id="'.$row["id_servicio"].'" class="btn btn-danger delete_data" />
+                           echo' 
+                                    
+                                     <input type="button" name="delete" value="-" id="'.$row["id_paquete_servicio"].'" class="btn btn-danger delete_data" />
                            </td>
                           </tr>
                          ';
@@ -257,7 +268,7 @@
            if(employee_id != '')  
            {  
                 $.ajax({  
-                     url:"../views/Servicios/saveServicio.php",  
+                     url:"../views/Paquete_Servicio/listServicio.php",  
                      method:"POST",  
                      data:{employee_id:employee_id},  
                      success:function(data){  
@@ -272,7 +283,7 @@
            if(employee_id != '')  
            {  
                 $.ajax({  
-                     url:"../views/Servicios/deleteServicio.php",  
+                     url:"../views/Paquete_Servicio/deletePaquete_Servicio.php",  
                      method:"POST",  
                      data:{employee_id:employee_id},  
                      success:function(data){  
@@ -287,7 +298,7 @@
            if(employee_id != '')  
            {  
                 $.ajax({  
-                     url:"../views/Servicios/updateServicio.php",  
+                     url:"../views/Paquete_Servicio/updatePaquete_Servicio.php",  
                      method:"POST",  
                      data:{employee_id:employee_id},  
                      success:function(data){  
@@ -303,7 +314,7 @@
            if(employee_id != '')  
            {  
                 $.ajax({  
-                     url:"../views/Servicios/statuServicio.php",  
+                     url:"../views/Paquete_Servicio/statuPaquete_Servicio.php",  
                      method:"POST",  
                      data:{employee_id:employee_id,employee_status:employee_status},  
                      success:function(data){  
